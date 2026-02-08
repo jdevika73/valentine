@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #f5f1e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Great Vibes', cursive;
+}
+
+.envelope {
+  width: 340px;
+  height: 220px;
+  background: #fff8ee;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  cursor: pointer;
+}
+
+.flap {
+  width: 100%;
+  height: 110px;
+  background: #fdf3e6;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  position: absolute;
+  top: 0;
+  transition: transform 1s ease;
+  transform-origin: top;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14px;
+  height: 100%;
+  background: #c62828;
+  transform: translateX(-50%);
+}
+
+.card {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 320px;
+  height: 280px;
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+  padding-top: 10px;
+  transform: translateY(140px);
+  transition: transform 1s ease;
+}
+
+.envelope.open .card {
+  transform: translateY(-20px);
+}
+
+.card img {
+  width: 120px;
+}
+
+h1 {
+  color: #c62828;
+  font-size: 30px;
+}
+
+p {
+  font-size: 22px;
+  color: #b71c1c;
+}
+
+.buttons {
+  position: relative;
+  height: 50px;
+}
+
+button {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  position: absolute;
+  left: 20px;
+}
+
+#ofcBtn {
+  position: absolute;
+  right: 20px;
+}
+
+.lock {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #fff8ee;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.time {
+  font-size: 60px;
+  color: #c62828;
+}
+
+.date {
+  font-size: 22px;
+}
+
+.lock h1 {
+  font-size: 36px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope()">
+  <div class="flap"></div>
+  <div class="ribbon"></div>
+
+  <div class="card">
+    <img src="valentine.png">
+    <h1>Will you be my Valentine?</h1>
+    <p>Won’t you, my darling..?</p>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="ofcBtn" onclick="event.stopPropagation(); showLock()">Of course 😘</button>
+    </div>
+  </div>
+</div>
+
+<div class="lock" id="lock">
+  <div class="time" id="time"></div>
+  <div class="date" id="date"></div>
+  <h1>It’s a date, My Khadoos 🧿 💖</h1>
+</div>
+
+<script>
+function openEnvelope() {
+  document.querySelector('.envelope').classList.add('open');
+}
+
+document.getElementById("yesBtn").onmouseover = () => {
+  yesBtn.style.left = Math.random() * 200 + "px";
+};
+
+function showLock() {
+  document.getElementById("lock").style.display = "flex";
+  updateTime();
+  setInterval(updateTime, 1000);
+}
+
+function updateTime() {
+  const d = new Date();
+  time.innerText = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  date.innerText = d.toDateString();
+}
+</script>
+
+</body>
+</html>
